@@ -1,19 +1,23 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:drift_flutter/drift_flutter.dart';
 import 'package:json_annotation/json_annotation.dart' as json_annotation;
 
 part 'data_model.g.dart';
 
 class LocalFriend extends Table {
-  TextColumn get ownerUserID => text().withLength(max: 64)();
-  TextColumn get friendUserID => text().withLength(max: 64)();
+  TextColumn get ownerUserID =>
+      text().named('owner_user_id').withLength(max: 64)();
+  TextColumn get friendUserID =>
+      text().named('friend_user_id').withLength(max: 64)();
   TextColumn get remark => text().withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get addSource => integer()();
-  TextColumn get operatorUserID => text().withLength(max: 64)();
+  TextColumn get operatorUserID =>
+      text().named('operator_user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   TextColumn get ex => text().withLength(max: 1024)();
   TextColumn get attachedInfo => text().withLength(max: 1024)();
   BoolColumn get isPinned => boolean()();
@@ -26,20 +30,23 @@ class LocalFriend extends Table {
 }
 
 class LocalFriendRequest extends Table {
-  TextColumn get fromUserID => text().withLength(max: 64)();
+  TextColumn get fromUserID =>
+      text().named('from_user_id').withLength(max: 64)();
   TextColumn get fromNickname => text().withLength(max: 255)();
-  TextColumn get fromFaceURL => text().withLength(max: 255)();
+  TextColumn get fromFaceURL =>
+      text().named('from_face_url').withLength(max: 255)();
   // IntColumn get fromGender => integer()();
-
-  TextColumn get toUserID => text().withLength(max: 64)();
+  TextColumn get toUserID => text().named('to_user_id').withLength(max: 64)();
   TextColumn get toNickname => text().withLength(max: 255)();
-  TextColumn get toFaceURL => text().withLength(max: 255)();
+  TextColumn get toFaceURL =>
+      text().named('to_face_url').withLength(max: 255)();
   // IntColumn get toGender => integer()();
 
   IntColumn get handleResult => integer()();
   TextColumn get reqMsg => text().withLength(max: 255)();
   IntColumn get createTime => integer()();
-  TextColumn get handlerUserID => text().withLength(max: 64)();
+  TextColumn get handlerUserID =>
+      text().named('handler_user_id').withLength(max: 64)();
   TextColumn get handleMsg => text().withLength(max: 255)();
   IntColumn get handleTime => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
@@ -51,16 +58,18 @@ class LocalFriendRequest extends Table {
 }
 
 class LocalGroup extends Table {
-  TextColumn get groupID => text().withLength(max: 64)();
+  TextColumn get groupID => text().named('group_id').withLength(max: 64)();
   TextColumn get groupName => text().withLength()();
   TextColumn get notification => text().withLength(max: 255)();
   TextColumn get introduction => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get status => integer()();
-  TextColumn get creatorUserID => text().withLength(max: 64)();
+  TextColumn get creatorUserID =>
+      text().named('creator_user_id').withLength(max: 64)();
   IntColumn get groupType => integer()();
-  TextColumn get ownerUserID => text().withLength(max: 64)();
+  TextColumn get ownerUserID =>
+      text().named('owner_user_id').withLength(max: 64)();
   IntColumn get memberCount => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
   TextColumn get attachedInfo => text().withLength(max: 1024)();
@@ -68,7 +77,7 @@ class LocalGroup extends Table {
   IntColumn get lookMemberInfo => integer()();
   IntColumn get applyMemberFriend => integer()();
   IntColumn get notificationUpdateTime => integer()();
-  TextColumn get notificationUserID => text()();
+  TextColumn get notificationUserID => text().named('notification_user_id')();
 
   @override
   Set<Column<Object>>? get primaryKey => {groupID};
@@ -80,16 +89,18 @@ class LocalGroup extends Table {
 @TableIndex(name: 'index_role_level', columns: {#roleLevel})
 @TableIndex(name: 'index_join_time', columns: {#joinTime})
 class LocalGroupMember extends Table {
-  TextColumn get groupID => text().withLength(max: 64)();
-  TextColumn get userID => text().withLength(max: 64)();
+  TextColumn get groupID => text().named('group_id').withLength(max: 64)();
+  TextColumn get userID => text().named('user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get roleLevel => integer()();
   IntColumn get joinTime => integer()();
   IntColumn get joinSource => integer()();
-  TextColumn get inviterUserID => text().withLength(max: 64)();
+  TextColumn get inviterUserID =>
+      text().named('inviter_user_id').withLength(max: 64)();
   IntColumn get muteEndTime => integer().withDefault(const Constant(0))();
-  TextColumn get operatorUserID => text().withLength(max: 64)();
+  TextColumn get operatorUserID =>
+      text().named('operator_user_id').withLength(max: 64)();
   TextColumn get ex => text().withLength(max: 1024)();
   TextColumn get attachedInfo => text().withLength(max: 1024)();
 
@@ -101,41 +112,47 @@ class LocalGroupMember extends Table {
 }
 
 class LocalGroupRequest extends Table {
-  TextColumn get groupID => text().withLength(max: 64)();
+  TextColumn get groupID => text().named('group_id').withLength(max: 64)();
   TextColumn get groupName => text().withLength(max: 255)();
   TextColumn get notification => text().withLength(max: 255)();
   TextColumn get introduction => text().withLength(max: 255)();
-  TextColumn get groupFaceURL => text().withLength(max: 255)();
+  TextColumn get groupFaceURL =>
+      text().named('group_face_url').withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get status => integer()();
-  TextColumn get creatorUserID => text().withLength(max: 64)();
+  TextColumn get creatorUserID =>
+      text().named('creator_user_id').withLength(max: 64)();
   IntColumn get groupType => integer()();
-  TextColumn get ownerUserID => text().withLength(max: 64)();
+  TextColumn get ownerUserID =>
+      text().named('owner_user_id').withLength(max: 64)();
   IntColumn get memberCount => integer()();
 
-  TextColumn get userID => text().withLength(max: 64)();
+  TextColumn get userID => text().named('user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get userFaceURL => text().withLength(max: 255)();
+  TextColumn get userFaceURL =>
+      text().named('user_face_url').withLength(max: 255)();
 
   IntColumn get handleResult => integer()();
   TextColumn get reqMsg => text().withLength(max: 255)();
   TextColumn get handleMsg => text().withLength(max: 255)();
   IntColumn get reqTime => integer()();
-  TextColumn get handleUserID => text().withLength(max: 64)();
+  TextColumn get handleUserID =>
+      text().named('handle_user_id').withLength(max: 64)();
   IntColumn get handleTime => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
   TextColumn get attachedInfo => text().withLength(max: 1024)();
   IntColumn get joinSource => integer()();
-  TextColumn get inviterUserID => text().withLength(max: 64)();
+  TextColumn get inviterUserID =>
+      text().named('inviter_user_id').withLength(max: 64)();
 
   @override
   Set<Column<Object>>? get primaryKey => {groupID, userID};
 }
 
 class LocalUser extends Table {
-  TextColumn get userID => text().withLength(max: 64)();
+  TextColumn get userID => text().named('user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get appMangerLevel => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
@@ -147,13 +164,16 @@ class LocalUser extends Table {
 }
 
 class LocalBlack extends Table {
-  TextColumn get ownerUserID => text().withLength(max: 64)();
-  TextColumn get blockUserID => text().withLength(max: 64)();
+  TextColumn get ownerUserID =>
+      text().named('owner_user_id').withLength(max: 64)();
+  TextColumn get blockUserID =>
+      text().named('block_user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get addSource => integer()();
-  TextColumn get operatorUserID => text().withLength(max: 64)();
+  TextColumn get operatorUserID =>
+      text().named('operator_user_id').withLength(max: 64)();
   TextColumn get ex => text().withLength(max: 1024)();
   TextColumn get attachedInfo => text().withLength(max: 1024)();
 
@@ -161,8 +181,8 @@ class LocalBlack extends Table {
   Set<Column<Object>>? get primaryKey => {ownerUserID, blockUserID};
 }
 
-class LocalSeqData extends Table {
-  TextColumn get userID => text().withLength(max: 64)();
+class LocalSeqDataTable extends Table {
+  TextColumn get userID => text().named('user_id').withLength(max: 64)();
   IntColumn get seq => integer()();
 
   @override
@@ -180,7 +200,7 @@ class LocalSeq extends Table {
 // 删除会话，可能会话没有
 // 确认删除，告诉会话 ID
 // 清空聊天记录的发，会话有，但是聊天记录没有
-// DeleteMlessageFromlocalAndSvr
+// DeleteMessageFromLocalAndSvr
 // db
 
 // 不同的会话本地有一个单独的表，其中单聊的话也是这样，有一个单聊的表
@@ -195,13 +215,16 @@ class LocalSeq extends Table {
 @TableIndex(name: 'index_seq', columns: {#seq})
 @TableIndex(name: 'index_send_time', columns: {#sendTime})
 class LocalChatLog extends Table {
-  TextColumn get clientMsgID => text().withLength(max: 64)();
-  TextColumn get serverMsgID => text().withLength(max: 64)();
-  TextColumn get sendID => text().withLength(max: 64)();
-  TextColumn get recvID => text().withLength(max: 64)();
-  IntColumn get senderPlatformID => integer()();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
+  TextColumn get serverMsgID =>
+      text().named('server_msg_id').withLength(max: 64)();
+  TextColumn get sendID => text().named('send_id').withLength(max: 64)();
+  TextColumn get recvID => text().named('recv_id').withLength(max: 64)();
+  IntColumn get senderPlatformID => integer().named('sender_platform_id')();
   TextColumn get senderNickname => text().withLength(max: 255)();
-  TextColumn get senderFaceURL => text().withLength(max: 255)();
+  TextColumn get senderFaceURL =>
+      text().named('sender_face_url').withLength(max: 255)();
   IntColumn get sessionType => integer()();
   IntColumn get msgFrom => integer()();
   IntColumn get contentType => integer()();
@@ -225,13 +248,17 @@ class LocalChatLog extends Table {
 
 class LocalErrChatLog extends Table {
   IntColumn get seq => integer()();
-  TextColumn get clientMsgID => text().withLength(max: 64)();
-  TextColumn get serverMsgID => text().withLength(max: 64)();
-  TextColumn get sendID => text().withLength(max: 64)();
-  TextColumn get recvID => text().withLength(max: 64)();
-  IntColumn get senderPlatformID => integer()();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
+  TextColumn get serverMsgID =>
+      text().named('server_msg_id').withLength(max: 64)();
+  TextColumn get sendID => text().named('send_id').withLength(max: 64)();
+  TextColumn get recvID => text().named('recv_id').withLength(max: 64)();
+  IntColumn get senderPlatformID => integer().named('sender_platform_id')();
+
   TextColumn get senderNickname => text().withLength(max: 255)();
-  TextColumn get senderFaceURL => text().withLength(max: 255)();
+  TextColumn get senderFaceURL =>
+      text().named('sender_face_url').withLength(max: 255)();
   IntColumn get sessionType => integer()();
   IntColumn get msgFrom => integer()();
   IntColumn get contentType => integer()();
@@ -249,13 +276,16 @@ class LocalErrChatLog extends Table {
 }
 
 class TempCacheLocalChatLog extends Table {
-  TextColumn get clientMsgID => text().withLength(max: 64)();
-  TextColumn get serverMsgID => text().withLength(max: 64)();
-  TextColumn get sendID => text().withLength(max: 64)();
-  TextColumn get recvID => text().withLength(max: 64)();
-  IntColumn get senderPlatformID => integer()();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
+  TextColumn get serverMsgID =>
+      text().named('server_msg_id').withLength(max: 64)();
+  TextColumn get sendID => text().named('send_id').withLength(max: 64)();
+  TextColumn get recvID => text().named('recv_id').withLength(max: 64)();
+  IntColumn get senderPlatformID => integer().named('sender_platform_id')();
   TextColumn get senderNickname => text().withLength(max: 255)();
-  TextColumn get senderFaceURL => text().withLength(max: 255)();
+  TextColumn get senderFaceURL =>
+      text().named('sender_face_url').withLength(max: 255)();
   IntColumn get sessionType => integer()();
   IntColumn get msgFrom => integer()();
   IntColumn get contentType => integer()();
@@ -275,16 +305,17 @@ class TempCacheLocalChatLog extends Table {
 
 class LocalConversation extends Table {
   // 128 length
-  TextColumn get conversationID => text()();
+  TextColumn get conversationID =>
+      text().named('conversation_id').withLength(max: 128)();
   IntColumn get conversationType => integer()();
   // 64 length
-  TextColumn get userID => text()();
+  TextColumn get userID => text().named('user_id')();
   // 128 length
-  TextColumn get groupID => text()();
+  TextColumn get groupID => text().named('group_id')();
   // 255 length
   TextColumn get showName => text().withLength(max: 255)();
   // 255 length
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get recvMsgOpt => integer()();
   IntColumn get unreadCount => integer()();
   IntColumn get groupAtType => integer()();
@@ -316,8 +347,10 @@ class LocalConversation extends Table {
 }
 
 class LocalConversationUnreadMessage extends Table {
-  TextColumn get conversationID => text().withLength(max: 128)();
-  TextColumn get clientMsgID => text().withLength(max: 64)();
+  TextColumn get conversationID =>
+      text().named('conversation_id').withLength(max: 128)();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
   IntColumn get sendTime => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
 
@@ -341,7 +374,8 @@ class LocalAdminGroupRequests extends LocalGroupRequest {}
 
 @UseRowClass(LocalChatLogReactionExtension)
 class LocalChatLogReactionExtensions extends Table {
-  TextColumn get clientMsgID => text().withLength(max: 64)();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
   TextColumn get localReactionExtensions =>
       text().map(IntListTypeConverter())();
 
@@ -409,7 +443,8 @@ class LocalWorkMomentsNotificationUnreadCount extends Table {
 }
 
 class NotificationSeq extends Table {
-  TextColumn get conversationID => text().withLength(max: 128)();
+  TextColumn get conversationID =>
+      text().named('conversation_id').withLength(max: 128)();
   IntColumn get seq => integer()();
 
   @override
@@ -419,9 +454,9 @@ class NotificationSeq extends Table {
   String? get tableName => 'local_notification_seqs';
 }
 
-class LocalUploads extends Table {
+class LocalUpload extends Table {
   TextColumn get partHash => text().withLength(max: 128)();
-  TextColumn get uploadID => text().withLength(max: 1000)();
+  TextColumn get uploadID => text().named('upload_id').withLength(max: 1000)();
   TextColumn get uploadInfo => text().withLength(max: 2000)();
   IntColumn get expireTime => integer()();
   IntColumn get createTime => integer()();
@@ -434,9 +469,9 @@ class LocalUploads extends Table {
 }
 
 class LocalStranger extends Table {
-  TextColumn get userID => text().withLength(max: 64)();
+  TextColumn get userID => text().named('user_id').withLength(max: 64)();
   TextColumn get nickname => text().withLength(max: 255)();
-  TextColumn get faceURL => text().withLength(max: 255)();
+  TextColumn get faceURL => text().named('face_url').withLength(max: 255)();
   IntColumn get createTime => integer()();
   IntColumn get appMangerLevel => integer()();
   TextColumn get ex => text().withLength(max: 1024)();
@@ -450,9 +485,11 @@ class LocalStranger extends Table {
   String? get tableName => 'local_stranger';
 }
 
-class LocalSendingMessages extends Table {
-  TextColumn get conversationID => text().withLength(max: 128)();
-  TextColumn get clientMsgID => text().withLength(max: 64)();
+class LocalSendingMessage extends Table {
+  TextColumn get conversationID =>
+      text().named('conversation_id').withLength(max: 128)();
+  TextColumn get clientMsgID =>
+      text().named('client_msg_id').withLength(max: 64)();
   TextColumn get ex => text().withLength(max: 1024)();
 
   @override
@@ -463,7 +500,7 @@ class LocalSendingMessages extends Table {
 }
 
 class LocalUserCommand extends Table {
-  TextColumn get userID => text()();
+  TextColumn get userID => text().named('user_id')();
   IntColumn get type => integer()();
   TextColumn get uuid => text().withLength(max: 255)();
   IntColumn get createTime => integer()();
@@ -492,8 +529,8 @@ class StringListTypeConverter extends TypeConverter<List<String>, String> {
 @UseRowClass(LocalVersionSync)
 class LocalVersionSyncs extends Table {
   TextColumn get table => text().withLength(max: 255)();
-  TextColumn get entityID => text().withLength(max: 255)();
-  TextColumn get versionID => text().withLength(max: 255)();
+  TextColumn get entityID => text().named('entity_id').withLength(max: 255)();
+  TextColumn get versionID => text().named('version_id').withLength(max: 255)();
   IntColumn get version => integer()();
   IntColumn get createTime => integer()();
   TextColumn get uidList =>
@@ -538,4 +575,44 @@ class LocalAppSDKVersions extends Table {
 
   @override
   String? get tableName => 'local_app_sdk_version';
+}
+
+@DriftDatabase(tables: [
+  LocalFriend,
+  LocalFriendRequest,
+  LocalGroup,
+  LocalGroupMember,
+  LocalGroupRequest,
+  LocalUser,
+  LocalBlack,
+  LocalSeqDataTable,
+  LocalSeq,
+  LocalChatLog,
+  LocalErrChatLog,
+  TempCacheLocalChatLog,
+  LocalConversation,
+  LocalConversationUnreadMessage,
+  LocalAdminGroupRequests,
+  LocalChatLogReactionExtensions,
+  LocalWorkMomentNotification,
+  LocalWorkMomentsNotificationUnreadCount,
+  NotificationSeq,
+  LocalUpload,
+  LocalStranger,
+  LocalSendingMessage,
+  LocalUserCommand,
+  LocalVersionSyncs,
+  LocalAppSDKVersions
+])
+class AppDatabase extends _$AppDatabase {
+  AppDatabase() : super(_openConnection());
+
+  @override
+  int get schemaVersion => 1;
+
+  static QueryExecutor _openConnection() {
+    // `driftDatabase` from `package:drift_flutter` stores the database in
+    // `getApplicationDocumentsDirectory()`.
+    return driftDatabase(name: 'openim_client_flutter');
+  }
 }
