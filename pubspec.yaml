@@ -1,0 +1,17 @@
+name: openim_client_flutter
+description: "openim client for flutter"
+version: 0.0.1
+homepage: https://github.com/ebwood/openim-client-flutter
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
